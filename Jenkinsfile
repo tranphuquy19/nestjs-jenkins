@@ -6,13 +6,15 @@ pipeline {
     }
 
     stages {
-        state("Test") {
-            docker {
-                image 'node:12',
-                args '-u 0:0'
+        stage("Test") {
+            agent {
+                docker {
+                    image 'node:12',
+                    args '-u 0:0'
+                }
             }
         }
-        step {
+        steps {
             sh 'npm install'
             sh 'npm run test'
         }

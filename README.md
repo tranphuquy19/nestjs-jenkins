@@ -12,5 +12,6 @@ docker run \
 -v /home/christian/Documents/jenkins_home:/var/jenkins_home \
 --user 1000:999 \
 --name jenkins-server \
+--restart=always \
 jenkins/jenkins:lts
 ```

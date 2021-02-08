@@ -8,4 +8,5 @@ docker run -d \
 -v /home/jenkins/data:/var/jenkins_home \
 --user 1000:999 \
 --name jenkins-server \
+--restart=always \
 jenkins/jenkins:lts

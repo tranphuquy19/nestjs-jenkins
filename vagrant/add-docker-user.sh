@@ -18,13 +18,19 @@
 
 # generate SSH key pairs
 # REF. https://stackoverflow.com/a/43235320/1235074
-ssh-keygen -q -N '' -m PEM -t rsa -f "$HOME/.ssh/id_rsa_jenkins" <<< ""$'\n'"y" 2>&1 >/dev/null
+ssh-keygen -q -N '' -m PEM -t rsa -f "/root/.ssh/id_rsa_jenkins" <<< ""$'\n'"y" 2>&1 >/dev/null
 
 # create new user
+echo "Adding user jenkins"
 useradd -m -d /home/jenkins -s /bin/bash jenkins
-useradd -m -d /home/jenkins -s /bin/bash jenkins
+echo "Add jenkins user to Docker"
+usermod -aG docker jenkins
 mkdir /home/jenkins/.ssh
+
+# Mkdir data folder -> mount into Jenkins container
 mkdir /home/jenkins/data
+chmod -R 777 /home/jenkins/data
+
 touch /home/jenkins/.ssh/authorized_keys
-cat "$HOME/.ssh/id_rsa_jenkins.pub" > /home/jenkins/.ssh/authorized_keys
-ssh -i $HOME/.ssh/id_rsa_jenkins jenkins@localhost "docker --version && echo '>>> DONE. New user added'"
+cat "/root/.ssh/id_rsa_jenkins.pub" > /home/jenkins/.ssh/authorized_keys
+ssh -i /root/.ssh/id_rsa_jenkins jenkins@localhost "docker --version && echo '>>> DONE. New user (jenkins) added'"

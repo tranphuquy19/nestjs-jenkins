@@ -1,22 +1,23 @@
-pipeline {
-    agent none
+pipeline  {
 
-    enviroment {
-        DOCKER_IMAGE = "tranphuquy19/nestjs-jenkins"
-    }
+  agent none
 
-    stages {
-        stage("test") {
-            agent {
-                docker {
-                    image 'node:12',
-                    args '-u 0:0'
-                }
-            }
-        }
-        steps {
-            sh 'npm install'
-            sh 'npm run test'
-        }
+  environment {
+    DOCKER_IMAGE = "tranphuquy19/nestjs-jenkins"
+  }
+
+  stages {
+    stage("Test") {
+      agent {
+          docker {
+            image 'node:12'
+            args '-u 0:0'
+          }
+      }
+      steps {
+        sh "npm install"
+        sh "npm run test"
+      }
     }
+  }
 }

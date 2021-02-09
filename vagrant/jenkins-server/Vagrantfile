@@ -1,11 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-
 Vagrant.configure("2") do |config|
-    config.vm.box = "tranphuquy19/centos7"
+    config.vm.box = "tranphuquy19/centos7-jenkins-docker-inside"
     config.vm.network "private_network", ip: "172.16.10.107"
-    config.vm.network "forwarded_port", guest: 8080, host: 8080
     config.vm.hostname = "jenkins.dora"
   
     config.vm.provider "virtualbox" do |vb|
@@ -14,18 +12,15 @@ Vagrant.configure("2") do |config|
         vb.memory = "2048"
     end
     
-    config.vm.provision "shell", path: "./../install-docker-kube.sh"
-    
-    # Chạy các lệnh shell
+    # config.vm.provision "shell", path: "./../install-docker-kube.sh"
+  
     config.vm.provision "shell", inline: <<-SHELL
-    # Đặt pass 123 có tài khoản root và cho phép SSH
     echo "11231123" | passwd --stdin root
     sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
     systemctl reload sshd
-    # Ghi nội dung sau ra file /etc/hosts để truy cập được các máy theo HOSTNAME
     cat >>/etc/hosts<<EOF
     172.16.10.107 jenkins.dora
     EOF
-
+  
     SHELL
 end

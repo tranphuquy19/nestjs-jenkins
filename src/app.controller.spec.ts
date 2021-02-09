@@ -24,6 +24,7 @@ describe('AppController', () => {
     });
 
     it('should return "Thank you!"', () => {
+      console.log('latest test case');
       return expect(appController.getThankyou()).toBe('Thank you!');
     });
   });

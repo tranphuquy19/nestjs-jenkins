@@ -26,6 +26,5 @@ describe('AppController', () => {
     it('should return "Thank you!"', () => {
       return expect(appController.getThankyou()).toBe('Thank you!');
     });
-    
   });
 });

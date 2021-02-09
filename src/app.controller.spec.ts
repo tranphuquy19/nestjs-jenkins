@@ -20,11 +20,11 @@ describe('AppController', () => {
     });
 
     it('should return "Hi"', () => {
-      return expect(appController.getHi()).toBe("Hi");
-    })
+      return expect(appController.getHi()).toBe('Hi');
+    });
 
     it('should return "Thank you!"', () => {
-      return expect(appController.getThankyou()).toBe("Thank you!");
-    })
+      return expect(appController.getThankyou()).toBe('Thank you!');
+    });
   });
 });

@@ -9,4 +9,8 @@ export class AppService {
   getHi(): string {
     return 'Hi';
   }
+
+  getThankyou(): string {
+    return 'Thank you!';
+  }
 }

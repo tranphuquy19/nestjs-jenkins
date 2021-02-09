@@ -14,4 +14,9 @@ export class AppController {
   getHi(): string {
     return this.appService.getHi();
   }
+
+  @Get('thank')
+  getThankyou(): string {
+    return this.appService.getThankyou();
+  }
 }

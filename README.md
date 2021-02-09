@@ -18,7 +18,11 @@ ExecStart=/usr/bin/dockerd -H unix://var/run/docker.sock -H tcp://<LAN_IP_ADDRES
 ...
 ```
 
-2. Restart Docker service
+2. Assign permission docker.sock
+
+`chmod 666 /var/run/docker.sock`
+
+3. Restart Docker service
 
 ```shell
 systemctl daemon-reload
